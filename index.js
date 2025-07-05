@@ -4,8 +4,9 @@ import dotenv from "dotenv";
 import mongoose, { mongo, Mongoose } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
 const app=express();
+dotenv.config();
+
 app.use(cors());
 app.use(express.json());//to parse incoming data
 app.listen(3000, function () {
@@ -15,7 +16,7 @@ app.listen(3000, function () {
 //connect the database using mongoose
 
 mongoose
-  .connect("mongodb+srv://Aadi:<db_password>@feedback.i4l7gy9.mongodb.net/?retryWrites=true&w=majority&appName=Feedback")
+  .connect(process.env.MONGODB_URL)
   .then(function () {
     console.log("connected to database");
   })
